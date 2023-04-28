@@ -13,6 +13,8 @@ export function App() {
   const { data: paginatedTransactions, ...paginatedTransactionsUtils } = usePaginatedTransactions()
   const { data: transactionsByEmployee, ...transactionsByEmployeeUtils } = useTransactionsByEmployee()
   const [isLoading, setIsLoading] = useState(false)
+  // Bug 6
+  const [hide, setHide] = useState(false)
 
   const transactions = useMemo(
     () => paginatedTransactions?.data ?? transactionsByEmployee ?? null,
@@ -20,19 +22,30 @@ export function App() {
   )
 
   const loadAllTransactions = useCallback(async () => {
-    setIsLoading(true)
+    //Bug 5 -- uncommented
+    // setIsLoading(true) 
     transactionsByEmployeeUtils.invalidateData()
 
     await employeeUtils.fetchAll()
-    await paginatedTransactionsUtils.fetchAll()
-
-    setIsLoading(false)
+    // Bug 6
+    const res = await paginatedTransactionsUtils.fetchAll()
+    console.log(res)
+    if (res.nextPage == null) {
+      setHide(true)
+    } else {
+      setHide(false)
+    }
+    //Bug 5 -- uncommented
+    // setIsLoading(false)
+    // bug 6
+    return res
   }, [employeeUtils, paginatedTransactionsUtils, transactionsByEmployeeUtils])
 
   const loadTransactionsByEmployee = useCallback(
     async (employeeId: string) => {
       paginatedTransactionsUtils.invalidateData()
       await transactionsByEmployeeUtils.fetchById(employeeId)
+      setHide(true)
     },
     [paginatedTransactionsUtils, transactionsByEmployeeUtils]
   )
@@ -42,7 +55,7 @@ export function App() {
       loadAllTransactions()
     }
   }, [employeeUtils.loading, employees, loadAllTransactions])
-
+  
   return (
     <Fragment>
       <main className="MainContainer">
@@ -64,8 +77,12 @@ export function App() {
             if (newValue === null) {
               return
             }
-
-            await loadTransactionsByEmployee(newValue.id)
+            // Bug 3
+            if (newValue.firstName == "All") {
+              await loadAllTransactions()
+            } else {
+              await loadTransactionsByEmployee(newValue.id)
+            }
           }}
         />
 
@@ -74,7 +91,9 @@ export function App() {
         <div className="RampGrid">
           <Transactions transactions={transactions} />
 
-          {transactions !== null && (
+          {transactions !== null
+           && !hide //Bug 6
+           && (
             <button
               className="RampButton"
               disabled={paginatedTransactionsUtils.loading}

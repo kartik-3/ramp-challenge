@@ -20,7 +20,7 @@ Since you need to submit a CodeSandbox link with your response (_See [Submission
 
 #### Upload the project to CodeSandbox
 
-**NOTE: We recommend you use this method to upload your project (with the CLI) rather than importing directly from Github to generate a CodeSandbox.**
+**NOTE: Make sure your CodeSandbox link can be edited. If your link is Read only, you will be disqualified as we are not able to grade your assignment. We strongly recommend you use this method to upload your project (with the CLI) rather than importing directly from Github to generate a CodeSandbox, as it makes it Read only by default.**
 
 - Run `yarn install` or `npm install`
 - Run `yarn upload` or `npm run upload`

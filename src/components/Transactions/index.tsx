@@ -20,15 +20,18 @@ export const Transactions: TransactionsComponent = ({ transactions }) => {
   if (transactions === null) {
     return <div className="RampLoading--container">Loading...</div>
   }
-
+  // console.log(transactions)
   return (
     <div data-testid="transaction-container">
       {transactions.map((transaction) => (
         <TransactionPane
-          key={transaction.id}
-          transaction={transaction}
-          loading={loading}
-          setTransactionApproval={setTransactionApproval}
+        key={transaction.id}
+        transaction={transaction}
+        loading={loading}
+        setTransactionApproval={setTransactionApproval}
+        // onChange={() => { 
+        //   console.log(transaction)
+        //   }}
         />
       ))}
     </div>

@@ -86,13 +86,13 @@ export function InputSelect<TItem>({
           if (isLoading) {
             return <div className="RampInputSelect--dropdown-item">{loadingLabel}...</div>
           }
-
           if (items.length === 0) {
             return <div className="RampInputSelect--dropdown-item">No items</div>
           }
 
           return items.map((item, index) => {
             const parsedItem = parseItem(item)
+            console.log(parsedItem)
             return (
               <div
                 key={parsedItem.value}

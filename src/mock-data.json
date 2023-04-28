@@ -135,6 +135,19 @@
       "approved": true
     },
     {
+      "id": "990247f7-12ba-4bf5-af0e-a8e16d6886f3",
+      "amount": 29.19,
+      "employee": {
+        "id": "6e88529c-6739-4f1b-bea0-02afdd336bb3",
+        "firstName": "Linda",
+        "lastName": "Jones",
+        "extras": 3
+      },
+      "merchant": "Taxiiiiii Inc",
+      "date": "8/4/2022",
+      "approved": true
+    },
+    {
       "id": "4f941d9c-37cc-4393-ba10-c7e0d405a724",
       "amount": 276.22,
       "employee": {

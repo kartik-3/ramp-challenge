@@ -40,6 +40,7 @@ export function fakeFetch<TData, TParams extends object = object>(
             mockApiLogger({ data: { endpoint, params, result } })
             resolve(result)
           }, mockTimeout * 2.5)
+          return result
           break
 
         case "transactionsByEmployee":

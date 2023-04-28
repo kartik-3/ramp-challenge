@@ -26,7 +26,6 @@ export const getTransactionsPaginated = ({
 
   const start = page * TRANSACTIONS_PER_PAGE
   const end = start + TRANSACTIONS_PER_PAGE
-
   if (start > data.transactions.length) {
     throw new Error(`Invalid page ${page}`)
   }
