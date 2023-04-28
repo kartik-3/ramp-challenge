@@ -29,9 +29,6 @@ export const Transactions: TransactionsComponent = ({ transactions }) => {
         transaction={transaction}
         loading={loading}
         setTransactionApproval={setTransactionApproval}
-        // onChange={() => { 
-        //   console.log(transaction)
-        //   }}
         />
       ))}
     </div>

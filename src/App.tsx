@@ -29,7 +29,7 @@ export function App() {
     await employeeUtils.fetchAll()
     // Bug 6
     const res = await paginatedTransactionsUtils.fetchAll()
-    console.log(res)
+    // console.log(res)
     if (res.nextPage == null) {
       setHide(true)
     } else {
@@ -37,8 +37,6 @@ export function App() {
     }
     //Bug 5 -- uncommented
     // setIsLoading(false)
-    // bug 6
-    return res
   }, [employeeUtils, paginatedTransactionsUtils, transactionsByEmployeeUtils])
 
   const loadTransactionsByEmployee = useCallback(
